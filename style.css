@@ -49,7 +49,7 @@ body {
     }
 }
 
-/* هدر با خط نئونی بزرگتر و انیمیشن */
+/* هدر با خط نئونی بزرگتر و انیمیشن ساده دو مرحله‌ای */
 header {
     text-align: center;
     margin-bottom: 30px;
@@ -62,66 +62,38 @@ header {
     align-items: center;
 }
 
-/* خط نئونی بزرگتر - عرض 60% (حدود 5 سانت در این مقیاس) */
+/* خط نئونی بزرگتر - عرض 60% */
 header::after {
     content: '';
     position: absolute;
     bottom: -2px;
-    left: 20%;  /* تغییر از 30% به 20% برای پهنتر شدن */
-    width: 60%;  /* تغییر از 40% به 60% برای پهنتر شدن */
+    left: 20%;
+    width: 60%;
     height: 4px;
-    background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff, #ff00ff);  /* رنگ‌های نئونی */
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
     border-radius: 4px;
     filter: blur(1px);
-    /* انیمیشن چشمک زن */
-    animation: neonGlow 1.5s ease-in-out infinite;
+    /* انیمیشن ساده دو مرحله‌ای */
+    animation: simpleGlow 1.8s ease-in-out infinite;
     box-shadow: 
         0 0 10px #00ffff,
-        0 0 20px #ff00ff,
-        0 0 30px #00ffff,
-        0 0 40px #ff00ff;
+        0 0 20px #ff00ff;
 }
 
-/* انیمیشن چشمک زن برای خط نئونی */
-@keyframes neonGlow {
-    0%, 100% {
-        opacity: 0.8;
+/* انیمیشن ساده دو مرحله‌ای - فقط کم و زیاد شدن نور */
+@keyframes simpleGlow {
+    0% {
+        opacity: 0.7;
         box-shadow: 
             0 0 10px #00ffff,
-            0 0 20px #ff00ff,
-            0 0 30px #00ffff;
+            0 0 20px #ff00ff;
     }
-    50% {
+    100% {
         opacity: 1;
         box-shadow: 
             0 0 20px #00ffff,
             0 0 40px #ff00ff,
-            0 0 60px #00ffff,
-            0 0 80px #ff00ff;
-    }
-}
-
-/* انیمیشن دوم برای تنوع بیشتر - میشه یکی رو انتخاب کرد */
-@keyframes neonPulse {
-    0% {
-        opacity: 0.6;
-        box-shadow: 0 0 15px #00ffff;
-    }
-    25% {
-        opacity: 1;
-        box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff;
-    }
-    50% {
-        opacity: 0.8;
-        box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
-    }
-    75% {
-        opacity: 1;
-        box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff;
-    }
-    100% {
-        opacity: 0.6;
-        box-shadow: 0 0 15px #00ffff;
+            0 0 60px #00ffff;
     }
 }
 
