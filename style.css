@@ -49,7 +49,7 @@ body {
     }
 }
 
-/* GLOW EFFECT ADDED - خط نئونی بالای هدر با افکت درخشش */
+/* هدر با خط نئونی بزرگتر و انیمیشن */
 header {
     text-align: center;
     margin-bottom: 30px;
@@ -62,29 +62,66 @@ header {
     align-items: center;
 }
 
+/* خط نئونی بزرگتر - عرض 60% (حدود 5 سانت در این مقیاس) */
 header::after {
     content: '';
     position: absolute;
     bottom: -2px;
-    left: 30%;
-    width: 40%;
+    left: 20%;  /* تغییر از 30% به 20% برای پهنتر شدن */
+    width: 60%;  /* تغییر از 40% به 60% برای پهنتر شدن */
     height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    border-radius: 2px;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px #3b82f6;
-    animation: neonPulse 2s infinite;
+    background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff, #ff00ff);  /* رنگ‌های نئونی */
+    border-radius: 4px;
+    filter: blur(1px);
+    /* انیمیشن چشمک زن */
+    animation: neonGlow 1.5s ease-in-out infinite;
+    box-shadow: 
+        0 0 10px #00ffff,
+        0 0 20px #ff00ff,
+        0 0 30px #00ffff,
+        0 0 40px #ff00ff;
 }
 
-/* GLOW EFFECT ADDED - انیمیشن چشمک زدن نئون */
-@keyframes neonPulse {
+/* انیمیشن چشمک زن برای خط نئونی */
+@keyframes neonGlow {
     0%, 100% {
         opacity: 0.8;
-        box-shadow: 0 0 15px #3b82f6;
+        box-shadow: 
+            0 0 10px #00ffff,
+            0 0 20px #ff00ff,
+            0 0 30px #00ffff;
     }
     50% {
         opacity: 1;
-        box-shadow: 0 0 25px #3b82f6, 0 0 40px #8b5cf6;
+        box-shadow: 
+            0 0 20px #00ffff,
+            0 0 40px #ff00ff,
+            0 0 60px #00ffff,
+            0 0 80px #ff00ff;
+    }
+}
+
+/* انیمیشن دوم برای تنوع بیشتر - میشه یکی رو انتخاب کرد */
+@keyframes neonPulse {
+    0% {
+        opacity: 0.6;
+        box-shadow: 0 0 15px #00ffff;
+    }
+    25% {
+        opacity: 1;
+        box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff;
+    }
+    50% {
+        opacity: 0.8;
+        box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+    }
+    75% {
+        opacity: 1;
+        box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff;
+    }
+    100% {
+        opacity: 0.6;
+        box-shadow: 0 0 15px #00ffff;
     }
 }
 
@@ -112,8 +149,6 @@ h1 {
     background: linear-gradient(90deg, #60a5fa, #a78bfa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
 }
 
 .subtitle {
@@ -122,7 +157,6 @@ h1 {
     margin-top: 5px;
 }
 
-/* GLOW EFFECT ADDED - درخشش سبز روی دکمه ماشین حساب */
 .calculator-btn {
     padding: 10px 20px;
     background: linear-gradient(135deg, #10b981, #059669);
@@ -145,8 +179,7 @@ h1 {
 .calculator-btn:hover {
     background: linear-gradient(135deg, #059669, #047857);
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED - افزایش درخشش */
-    box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3), 0 0 20px rgba(16, 185, 129, 0.5);
+    box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
 }
 
 .balance-container {
@@ -158,8 +191,6 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* GLOW EFFECT ADDED - درخشش ملایم دور کانتینر بالانس */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(59, 130, 246, 0.2);
 }
 
 .balance-main {
@@ -177,8 +208,6 @@ h1 {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 .balance-info {
@@ -196,8 +225,6 @@ h1 {
     font-size: 1.8rem;
     font-weight: 800;
     color: #10b981;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
 }
 
 #currentAccountName {
@@ -241,7 +268,6 @@ h1 {
     gap: 10px;
 }
 
-/* GLOW EFFECT ADDED - درخشش روی دکمه‌های بالانس */
 .balance-btn {
     padding: 10px 16px;
     background: rgba(59, 130, 246, 0.2);
@@ -260,9 +286,6 @@ h1 {
 .balance-btn:hover {
     background: rgba(59, 130, 246, 0.3);
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4), 0 0 20px rgba(59, 130, 246, 0.3);
-    border-color: rgba(59, 130, 246, 0.6);
 }
 
 .balance-btn.active {
@@ -293,8 +316,6 @@ h1 {
     padding: 25px;
     border-width: 1px;
     margin-top: 15px;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
 .modal-header {
@@ -312,11 +333,8 @@ h1 {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
 }
 
-/* GLOW EFFECT ADDED - درخشش قرمز روی دکمه بستن */
 .modal-close {
     background: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.3);
@@ -334,9 +352,6 @@ h1 {
 .modal-close:hover {
     background: rgba(239, 68, 68, 0.2);
     transform: rotate(90deg);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
-    border-color: rgba(239, 68, 68, 0.6);
 }
 
 .modal-grid {
@@ -374,7 +389,7 @@ h1 {
 .modal-input:focus {
     outline: none;
     border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 .modal-buttons {
@@ -406,8 +421,7 @@ h1 {
 .modal-btn-primary:hover {
     background: linear-gradient(135deg, #2563eb, #4f46e5);
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
 }
 
 .modal-btn-secondary {
@@ -418,8 +432,7 @@ h1 {
 .modal-btn-secondary:hover {
     background-color: #64748b;
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 5px 15px rgba(71, 85, 105, 0.3), 0 0 15px rgba(100, 116, 139, 0.3);
+    box-shadow: 0 5px 15px rgba(71, 85, 105, 0.3);
 }
 
 .modal-btn-success {
@@ -430,8 +443,7 @@ h1 {
 .modal-btn-success:hover {
     background: linear-gradient(135deg, #059669, #047857);
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3), 0 0 20px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
 }
 
 .preset-buttons {
@@ -441,7 +453,6 @@ h1 {
     margin-top: 10px;
 }
 
-/* GLOW EFFECT ADDED - درخشش روی دکمه‌های پیش‌فرض */
 .preset-btn {
     padding: 8px 5px;
     background: rgba(71, 85, 105, 0.3);
@@ -459,9 +470,6 @@ h1 {
     background: rgba(59, 130, 246, 0.3);
     border-color: #3b82f6;
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
-    color: #fff;
 }
 
 .current-balance-display {
@@ -473,8 +481,6 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
 }
 
 .current-balance-label {
@@ -486,8 +492,6 @@ h1 {
     color: #10b981;
     font-size: 1.1rem;
     font-weight: 700;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 .accounts-list-container {
@@ -500,7 +504,6 @@ h1 {
     background-color: rgba(15, 23, 42, 0.5);
 }
 
-/* GLOW EFFECT ADDED - آیتم‌های حساب با درخشش */
 .account-item {
     display: flex;
     justify-content: space-between;
@@ -512,9 +515,6 @@ h1 {
 
 .account-item:hover {
     background-color: rgba(59, 130, 246, 0.1);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
-    border-radius: 8px;
 }
 
 .account-item:last-child {
@@ -556,23 +556,17 @@ h1 {
 .account-action-btn:hover {
     color: #3b82f6;
     background-color: rgba(59, 130, 246, 0.1);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
 }
 
 .account-action-btn.delete:hover {
     color: #ef4444;
     background-color: rgba(239, 68, 68, 0.1);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
 }
 
 .active-account {
     background-color: rgba(16, 185, 129, 0.1);
     border: 1px solid rgba(16, 185, 129, 0.3);
     border-radius: 8px;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
 }
 
 .active-badge {
@@ -582,8 +576,6 @@ h1 {
     padding: 2px 8px;
     border-radius: 10px;
     margin-top: 5px;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 .main-content {
@@ -608,8 +600,6 @@ h1 {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 10px rgba(96, 165, 250, 0.2);
 }
 
 .trade-form {
@@ -661,7 +651,7 @@ input[type="text"] {
 input:focus, select:focus {
     outline: none;
     border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 .prices-section {
@@ -669,8 +659,6 @@ input:focus, select:focus {
     border-radius: 10px;
     padding: 20px;
     border: 1px solid rgba(71, 85, 105, 0.3);
-    /* GLOW EFFECT ADDED */
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .prices-title {
@@ -703,7 +691,6 @@ input:focus, select:focus {
     margin-top: 10px;
 }
 
-/* GLOW EFFECT ADDED - دکمه‌های ریسک سریع با درخشش */
 .quick-risk-btn {
     padding: 8px 12px;
     background-color: rgba(71, 85, 105, 0.5);
@@ -721,11 +708,8 @@ input:focus, select:focus {
 .quick-risk-btn:hover {
     background-color: #64748b;
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px rgba(100, 116, 139, 0.5);
 }
 
-/* GLOW EFFECT ADDED - آپلود اسکرین‌شات با درخشش */
 .screenshot-upload-input {
     width: 100%;
     padding: 12px;
@@ -747,8 +731,6 @@ input:focus, select:focus {
 .screenshot-upload-input:hover {
     border-color: #3b82f6;
     background-color: rgba(59, 130, 246, 0.1);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
 }
 
 .screenshot-upload-input i {
@@ -775,8 +757,6 @@ input:focus, select:focus {
     border-radius: 8px;
     border: 1px solid #475569;
     margin-bottom: 5px;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
 }
 
 .screenshot-remove-link {
@@ -790,8 +770,6 @@ input:focus, select:focus {
 
 .screenshot-remove-link:hover {
     text-decoration: underline;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
 }
 
 .risk-summary-section {
@@ -800,8 +778,6 @@ input:focus, select:focus {
     padding: 20px;
     border: 1px solid rgba(71, 85, 105, 0.3);
     margin-top: 15px;
-    /* GLOW EFFECT ADDED */
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .risk-summary-title {
@@ -843,14 +819,10 @@ input:focus, select:focus {
 
 #riskAmount {
     color: #ef4444;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
 }
 
 #potentialProfit {
     color: #10b981;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 .fee-info-box {
@@ -859,8 +831,6 @@ input:focus, select:focus {
     border-radius: 8px;
     padding: 18px;
     margin-top: 15px;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
 }
 
 .fee-row {
@@ -891,8 +861,6 @@ input:focus, select:focus {
 #netProfitAmount {
     color: #10b981;
     font-weight: 600;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 .fee-info {
@@ -935,8 +903,7 @@ button {
 .btn-primary:hover {
     background: linear-gradient(135deg, #2563eb, #4f46e5);
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
 }
 
 .btn-secondary {
@@ -947,8 +914,7 @@ button {
 .btn-secondary:hover {
     background-color: #64748b;
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 5px 15px rgba(71, 85, 105, 0.3), 0 0 15px rgba(100, 116, 139, 0.3);
+    box-shadow: 0 5px 15px rgba(71, 85, 105, 0.3);
 }
 
 .btn-warning {
@@ -959,8 +925,7 @@ button {
 .btn-warning:hover {
     background: linear-gradient(135deg, #d97706, #b45309);
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3), 0 0 20px rgba(245, 158, 11, 0.4);
+    box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
 }
 
 .trades-table-container {
@@ -990,8 +955,6 @@ button {
     position: sticky;
     top: 0;
     z-index: 10;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
 }
 
 .trades-table td {
@@ -1005,7 +968,6 @@ button {
     background-color: rgba(59, 130, 246, 0.1);
 }
 
-/* GLOW EFFECT ADDED - سود و ضرر با درخشش */
 .profit {
     color: #10b981;
     font-weight: 700;
@@ -1015,7 +977,6 @@ button {
     display: inline-block;
     font-family: 'Courier New', monospace;
     font-size: 0.85rem;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
 }
 
 .loss {
@@ -1027,7 +988,6 @@ button {
     display: inline-block;
     font-family: 'Courier New', monospace;
     font-size: 0.85rem;
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
 }
 
 .neutral {
@@ -1050,8 +1010,6 @@ button {
     font-weight: 600;
     font-size: 0.9rem;
     color: #10b981;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
 }
 
 .crypto-badge i {
@@ -1067,7 +1025,6 @@ button {
     min-width: 120px;
 }
 
-/* GLOW EFFECT ADDED - دکمه‌های آیکون دار با درخشش */
 .btn-icon {
     padding: 8px 12px;
     border-radius: 8px;
@@ -1091,28 +1048,12 @@ button {
 
 .btn-icon:hover {
     transform: scale(1.1);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3), 0 0 15px currentColor;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
 
 .btn-icon:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-}
-
-/* رنگ‌های مختلف برای دکمه‌های آیکون */
-.btn-icon[onclick*="showTradeDetails"]:hover {
-    color: #0ea5e9;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3), 0 0 15px #0ea5e9;
-}
-
-.btn-icon[onclick*="openCloseModal"]:hover {
-    color: #3b82f6;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3), 0 0 15px #3b82f6;
-}
-
-.btn-icon[onclick*="deleteTrade"]:hover {
-    color: #ef4444;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3), 0 0 15px #ef4444;
 }
 
 .stats-container {
@@ -1122,7 +1063,6 @@ button {
     margin-top: 15px;
 }
 
-/* GLOW EFFECT ADDED - کارت‌های آمار با درخشش */
 .stat-card {
     background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
     border-radius: 10px;
@@ -1147,15 +1087,12 @@ button {
     height: 3px;
     background: linear-gradient(90deg, #3b82f6, #8b5cf6);
     opacity: 0.7;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px #3b82f6;
 }
 
 .stat-card:hover {
     transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     border-color: #60a5fa;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 0 25px rgba(96, 165, 250, 0.3);
 }
 
 .stat-icon {
@@ -1187,8 +1124,6 @@ button {
     padding: 4px 8px;
     border-radius: 4px;
     border: 1px solid rgba(16, 185, 129, 0.2);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
 }
 
 .negative {
@@ -1197,8 +1132,6 @@ button {
     padding: 4px 8px;
     border-radius: 4px;
     border: 1px solid rgba(239, 68, 68, 0.2);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
 }
 
 .neutral-stat {
@@ -1215,8 +1148,6 @@ button {
     padding: 4px 8px;
     border-radius: 4px;
     border: 1px solid rgba(245, 158, 11, 0.2);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
 }
 
 .backup-container {
@@ -1226,7 +1157,6 @@ button {
     margin-top: 15px;
 }
 
-/* GLOW EFFECT ADDED - کارت‌های پشتیبان با درخشش */
 .backup-card {
     background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
     padding: 22px;
@@ -1234,13 +1164,6 @@ button {
     border: 1px solid #475569;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s;
-}
-
-.backup-card:hover {
-    border-color: #10b981;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 25px rgba(16, 185, 129, 0.2);
-    transform: translateY(-2px);
 }
 
 .backup-header {
@@ -1260,7 +1183,6 @@ button {
     flex-grow: 1;
 }
 
-/* GLOW EFFECT ADDED - دکمه پشتیبان با درخشش */
 .btn-backup {
     background: linear-gradient(135deg, #10b981, #059669);
     color: white;
@@ -1270,8 +1192,7 @@ button {
 .btn-backup:hover {
     background: linear-gradient(135deg, #059669, #047857);
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3), 0 0 20px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
 }
 
 .file-input {
@@ -1283,12 +1204,6 @@ button {
     color: #f1f5f9;
     margin-bottom: 15px;
     font-size: 0.9rem;
-}
-
-.file-input:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .dashboard-section {
@@ -1313,8 +1228,6 @@ button {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
 }
 
 .month-selector {
@@ -1323,7 +1236,6 @@ button {
     align-items: center;
 }
 
-/* GLOW EFFECT ADDED - دکمه‌های ماه با درخشش */
 .month-btn {
     background: rgba(59, 130, 246, 0.1);
     border: 1px solid rgba(59, 130, 246, 0.3);
@@ -1339,12 +1251,9 @@ button {
     min-width: 36px;
 }
 
-.month-btn:hover:not(:disabled) {
+.month-btn:hover {
     background: rgba(59, 130, 246, 0.2);
     transform: translateY(-2px);
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
-    border-color: rgba(59, 130, 246, 0.6);
 }
 
 .month-btn:disabled {
@@ -1359,8 +1268,6 @@ button {
     border-radius: 20px;
     font-weight: 600;
     font-size: 0.95rem;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 .dashboard-stats {
@@ -1376,13 +1283,6 @@ button {
     padding: 16px;
     text-align: center;
     border: 1px solid #475569;
-    transition: all 0.3s;
-}
-
-.dashboard-stat-card:hover {
-    transform: translateY(-2px);
-    border-color: #60a5fa;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 20px rgba(96, 165, 250, 0.2); /* GLOW EFFECT ADDED */
 }
 
 .dashboard-stat-label {
@@ -1402,14 +1302,10 @@ button {
 
 #monthlyProfitable {
     color: #10b981;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 #monthlyLoss {
     color: #ef4444;
-    /* GLOW EFFECT ADDED */
-    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
 }
 
 .monthly-trades-container {
@@ -1436,8 +1332,6 @@ button {
     font-size: 0.9rem;
     position: sticky;
     top: 0;
-    /* GLOW EFFECT ADDED */
-    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
 }
 
 .monthly-trades-table td {
@@ -1458,7 +1352,6 @@ button {
     color: #94a3b8;
 }
 
-/* GLOW EFFECT ADDED - مودال‌ها با درخشش */
 .details-modal {
     position: fixed;
     top: 0;
@@ -1489,7 +1382,6 @@ button {
     border-radius: 16px;
     border: 1px solid #475569;
     width: 90%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(59, 130, 246, 0.2), 0 0 30px rgba(59, 130, 246, 0.2);
 }
 
 .details-modal-content h3 {
@@ -1500,7 +1392,6 @@ button {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    text-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
 }
 
 .details-grid {
@@ -1540,7 +1431,6 @@ button {
 
 #detail-risk-amount {
     color: #ef4444;
-    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .detail-section {
@@ -1560,7 +1450,6 @@ button {
 
 #detail-fee-entry, #detail-fee-exit, #detail-total-fee {
     color: #f59e0b;
-    text-shadow: 0 0 10px rgba(245, 158, 11, 0.3); /* GLOW EFFECT ADDED */
 }
 
 #detail-total-fee {
@@ -1598,12 +1487,10 @@ button {
     border-radius: 6px;
     cursor: pointer;
     transition: transform 0.2s;
-    border: 1px solid #475569;
 }
 
 .screenshot-image:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .no-screenshot {
@@ -1660,14 +1547,12 @@ button {
     border-radius: 16px;
     border: 1px solid #475569;
     width: 90%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(239, 68, 68, 0.2), 0 0 30px rgba(239, 68, 68, 0.2); /* GLOW EFFECT ADDED */
 }
 
 .close-modal-content h3 {
     color: #60a5fa;
     margin-bottom: 20px;
     text-align: center;
-    text-shadow: 0 0 15px rgba(96, 165, 250, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .close-preview {
@@ -1681,7 +1566,6 @@ button {
 .close-preview.active {
     display: block;
     margin: 15px auto 0;
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .screenshot-remove-wrapper {
@@ -1693,10 +1577,6 @@ button {
     color: #ef4444;
     cursor: pointer;
     display: none;
-}
-
-.screenshot-remove:hover {
-    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5); /* GLOW EFFECT ADDED */
 }
 
 .screenshot-remove.active {
@@ -1728,7 +1608,6 @@ button {
     max-height: 90vh;
     border-radius: 8px;
     border: 2px solid #475569;
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .image-modal-close {
@@ -1751,7 +1630,6 @@ button {
 .image-modal-close:hover {
     background: rgba(239, 68, 68, 0.8);
     transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5); /* GLOW EFFECT ADDED */
 }
 
 .backup-progress {
@@ -1765,7 +1643,6 @@ button {
 
 .backup-progress.active {
     display: block;
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); /* GLOW EFFECT ADDED */
 }
 
 .progress-bar-container {
@@ -1783,7 +1660,6 @@ button {
     width: 0%;
     transition: width 0.3s ease;
     border-radius: 4px;
-    box-shadow: 0 0 15px #3b82f6; /* GLOW EFFECT ADDED */
 }
 
 .progress-text {
@@ -1797,7 +1673,6 @@ button {
     color: #10b981;
     font-weight: 600;
     margin-top: 10px;
-    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .cancel-import-container {
@@ -1811,7 +1686,6 @@ button {
     margin: 0 auto;
 }
 
-/* GLOW EFFECT ADDED - فوتر با درخشش ملایم */
 footer {
     text-align: center;
     margin-top: 40px;
@@ -1819,18 +1693,6 @@ footer {
     border-top: 1px solid #475569;
     color: #94a3b8;
     font-size: 0.85rem;
-    position: relative;
-}
-
-footer::after {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 30%;
-    width: 40%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #3b82f6, #8b5cf6, #3b82f6, transparent);
-    box-shadow: 0 0 15px #3b82f6;
 }
 
 #noTradesMessage {
