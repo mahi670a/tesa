@@ -648,6 +648,16 @@
                             </div>
                         </div>
                         
+                        <!-- نمودار رشد ماهانه -->
+                        <div class="monthly-chart-container">
+                            <h3 class="monthly-chart-title"><i class="fas fa-chart-line"></i> رشد حساب در ماه جاری</h3>
+                            <canvas id="monthlyGrowthChart"></canvas>
+                            <div class="chart-axis-labels">
+                                <span class="axis-label x-axis">تعداد معاملات</span>
+                                <span class="axis-label y-axis">رشد سرمایه ($)</span>
+                            </div>
+                        </div>
+                        
                         <div class="monthly-trades-container" id="monthlyTradesContainer">
                             <table class="monthly-trades-table">
                                 <thead>
@@ -742,15 +752,15 @@
                                 <div class="stats-row">
                                     <div class="stats-item">
                                         <span class="stats-label">درصد سود:</span>
-                                        <span class="stats-value" id="profitPercentage">0%</span>
+                                        <span class="stats-value percentage-box" id="profitPercentage">0%</span>
                                     </div>
                                     <div class="stats-item">
                                         <span class="stats-label">سود خالص:</span>
-                                        <span class="stats-value positive" id="netProfit">$0</span>
+                                        <span class="stats-value positive-box" id="netProfit">$0</span>
                                     </div>
                                     <div class="stats-item">
                                         <span class="stats-label">ضرر خالص:</span>
-                                        <span class="stats-value negative" id="netLoss">$0</span>
+                                        <span class="stats-value negative-box" id="netLoss">$0</span>
                                     </div>
                                 </div>
                                 <div class="stats-row">
@@ -772,7 +782,7 @@
                         
                         <!-- نمودار رشد حساب -->
                         <div class="growth-chart-container">
-                            <h3 class="growth-chart-title"><i class="fas fa-chart-line"></i> رشد حساب</h3>
+                            <h3 class="growth-chart-title"><i class="fas fa-chart-line"></i> رشد حساب کلی</h3>
                             <canvas id="accountGrowthChart"></canvas>
                             <div class="chart-axis-labels">
                                 <span class="axis-label x-axis">تعداد معاملات</span>
