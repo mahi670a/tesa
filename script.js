@@ -506,22 +506,30 @@ const persianMonths = [
 // ============================
 function switchSection(sectionId) {
     // مخفی کردن همه بخش‌ها
-    document.querySelectorAll('.section, .dashboard-section').forEach(section => {
-        section.classList.remove('active-section');
+    const sections = document.querySelectorAll('.section, .dashboard-section');
+    sections.forEach(section => {
+        section.style.display = 'none';
     });
     
     // نمایش بخش انتخاب شده
     const targetSection = document.getElementById(sectionId + '-section');
     if (targetSection) {
-        targetSection.classList.add('active-section');
+        targetSection.style.display = 'block';
     }
     
     // به‌روزرسانی کلاس active در دکمه‌های Toolbar
-    document.querySelectorAll('.toolbar-btn').forEach(btn => {
+    const toolbarBtns = document.querySelectorAll('.toolbar-btn');
+    toolbarBtns.forEach(btn => {
         btn.classList.remove('active');
     });
     
-    const activeBtn = document.querySelector(`.toolbar-btn[data-section="${sectionId}"]`);
+    const activeBtn = Array.from(toolbarBtns).find(btn => 
+        btn.innerHTML.includes(sectionId === 'trade-form' ? 'فرم ثبت' : 
+                              sectionId === 'history' ? 'تاریخچه' :
+                              sectionId === 'dashboard' ? 'داشبورد' :
+                              sectionId === 'stats' ? 'آمار' : 'بکاپ')
+    );
+    
     if (activeBtn) {
         activeBtn.classList.add('active');
     }
@@ -540,6 +548,9 @@ function switchSection(sectionId) {
     if (sectionId === 'history') {
         loadTrades();
     }
+    
+    // بستن همه مودال‌ها هنگام تغییر بخش
+    closeAllModals();
 }
 
 // ============================
@@ -561,6 +572,11 @@ async function initialize() {
         
         setInitialMonthBasedOnLastTrade();
         updateMonthlyDashboard();
+        
+        // نمایش همه بخش‌ها
+        document.querySelectorAll('.section, .dashboard-section').forEach(section => {
+            section.style.display = 'block';
+        });
         
         // فعال کردن بخش پیش‌فرض (فرم ثبت معاملات)
         switchSection('trade-form');
@@ -2152,10 +2168,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('riskPercent').addEventListener('input', calculateRisk);
     document.getElementById('feePercent').addEventListener('input', calculateRisk);
     document.getElementById('type').addEventListener('change', calculateRisk);
-    
-    function adjustScale() {
-        // تابع scale قبلی حذف شد چون با layout جدید سازگار نیست
-    }
     
     document.getElementById('newBalanceInput').addEventListener('input', function() {
         const value = parseFloat(this.value);
