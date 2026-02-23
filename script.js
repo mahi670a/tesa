@@ -505,21 +505,18 @@ const persianMonths = [
 // تابع سوئیچ بین بخش‌ها
 // ============================
 function switchSection(sectionId) {
-    // مخفی کردن همه بخش‌ها
     const sections = document.querySelectorAll('.section, .dashboard-section');
     sections.forEach(section => {
         section.classList.remove('active-section');
         section.style.display = 'none';
     });
     
-    // نمایش بخش انتخاب شده
     const targetSection = document.getElementById(sectionId + '-section');
     if (targetSection) {
         targetSection.classList.add('active-section');
         targetSection.style.display = 'block';
     }
     
-    // به‌روزرسانی کلاس active در دکمه‌های Toolbar
     const toolbarBtns = document.querySelectorAll('.toolbar-btn');
     toolbarBtns.forEach(btn => {
         btn.classList.remove('active');
@@ -530,23 +527,81 @@ function switchSection(sectionId) {
         activeBtn.classList.add('active');
     }
     
-    // اگر بخش آمار/ریسک انتخاب شد، آمار را به‌روزرسانی کن
     if (sectionId === 'stats') {
         updateStats();
     }
     
-    // اگر بخش داشبورد انتخاب شد، داشبورد را به‌روزرسانی کن
     if (sectionId === 'dashboard') {
         updateMonthlyDashboard();
     }
     
-    // اگر بخش تاریخچه انتخاب شد، تاریخچه را به‌روزرسانی کن
     if (sectionId === 'history') {
         loadTrades();
     }
     
-    // بستن همه مودال‌ها هنگام تغییر بخش
+    if (sectionId === 'trade-form') {
+        loadOpenTrades();
+    }
+    
     closeAllModals();
+}
+
+// ============================
+// تابع بارگذاری معاملات باز در فرم ثبت معامله
+// ============================
+function loadOpenTrades() {
+    const openTradesList = document.getElementById('openTradesList');
+    if (!openTradesList) return;
+    
+    const openTrades = trades.filter(t => t.status === 'open' && t.accountId === activeAccountId);
+    
+    if (openTrades.length === 0) {
+        openTradesList.innerHTML = '<div class="no-open-trades"><i class="fas fa-check-circle"></i> هیچ معامله بازی وجود ندارد</div>';
+        return;
+    }
+    
+    let html = '';
+    openTrades.forEach(trade => {
+        const dateText = formatPersianDate(trade.date, true);
+        const typeText = trade.type === 'buy' ? 'لانگ' : 'شورت';
+        const typeIcon = trade.type === 'buy' ? 'fa-arrow-up' : 'fa-arrow-down';
+        const typeColor = trade.type === 'buy' ? '#10b981' : '#ef4444';
+        
+        html += `
+        <div class="open-trade-item">
+            <div class="open-trade-info">
+                <span class="open-trade-symbol">${trade.symbol}</span>
+                <div class="open-trade-detail">
+                    <i class="fas ${typeIcon}" style="color: ${typeColor}"></i>
+                    <span>${typeText}</span>
+                </div>
+                <div class="open-trade-detail">
+                    <i class="fas fa-calendar"></i>
+                    <span>${dateText}</span>
+                </div>
+                <div class="open-trade-detail">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>${trade.entryPriceStr || trade.entryPrice}</span>
+                </div>
+                <div class="open-trade-detail">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>${trade.stopLossStr || trade.stopLoss}</span>
+                </div>
+                <div class="open-trade-detail">
+                    <i class="fas fa-bullseye"></i>
+                    <span>${trade.takeProfitStr || trade.takeProfit}</span>
+                </div>
+            </div>
+            <div class="open-trade-actions">
+                <button class="btn-icon" onclick="openCloseModal(${trade.id})" title="بستن معامله">
+                    <i class="fas fa-check-circle"></i>
+                </button>
+            </div>
+        </div>
+        `;
+    });
+    
+    openTradesList.innerHTML = html;
 }
 
 // ============================
@@ -569,8 +624,8 @@ async function initialize() {
         setInitialMonthBasedOnLastTrade();
         updateMonthlyDashboard();
         
-        // فعال کردن بخش پیش‌فرض (فرم ثبت معاملات)
         switchSection('trade-form');
+        loadOpenTrades();
         
         console.log('✅ برنامه با موفقیت راه‌اندازی شد');
     } catch (error) {
@@ -640,10 +695,12 @@ async function loadTradesFromDB() {
     try {
         trades = await db.getTradesByAccount(activeAccountId);
         loadTrades();
+        loadOpenTrades();
     } catch (error) {
         console.error('خطا در بارگذاری معاملات:', error);
         trades = [];
         loadTrades();
+        loadOpenTrades();
     }
 }
 
@@ -1058,6 +1115,7 @@ document.getElementById('tradeForm').addEventListener('submit', async function(e
     loadTrades();
     updateStats();
     updateTotalRisk();
+    loadOpenTrades();
     
     setInitialMonthBasedOnLastTrade();
     updateMonthlyDashboard();
@@ -1145,13 +1203,13 @@ function loadTrades() {
             <td><span class="${statusClass}">${statusText}</span></td>
             <td><span class="${pnlClass}">${pnlText}</span></td>
             <td class="actions">
-                <button class="btn-icon" onclick="showTradeDetails(${trade.id})" style="background-color: rgba(14, 165, 233, 0.1); color: #0ea5e9; border: 1px solid rgba(14, 165, 233, 0.3);">
+                <button class="btn-icon" onclick="showTradeDetails(${trade.id})" style="background-color: rgba(14, 165, 233, 0.1); color: #0ea5e9; border: 1px solid rgba(14, 165, 233, 0.3);" title="مشاهده جزئیات">
                     <i class="fas fa-eye"></i>
                 </button>
-                <button class="btn-icon" onclick="openCloseModal(${trade.id})" style="background-color: rgba(59, 130, 246, 0.1); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3);" ${trade.status === 'closed' ? 'disabled' : ''}>
-                    <i class="fas fa-check-circle"></i>
+                <button class="btn-icon" onclick="editTrade(${trade.id})" style="background-color: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);" title="ویرایش معامله">
+                    <i class="fas fa-edit"></i>
                 </button>
-                <button class="btn-icon" onclick="deleteTrade(${trade.id})" style="background-color: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3);">
+                <button class="btn-icon" onclick="deleteTrade(${trade.id})" style="background-color: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3);" title="حذف معامله">
                     <i class="fas fa-trash"></i>
                 </button>
             </td>
@@ -1167,7 +1225,6 @@ async function showTradeDetails(tradeId) {
     if (!trade) return;
     
     const detailsModal = document.getElementById('detailsModal');
-    detailsModal._currentTradeId = tradeId;
     
     document.getElementById('detail-symbol').textContent = trade.symbol;
     document.getElementById('detail-type').textContent = trade.type === 'buy' ? 'لانگ' : 'شورت';
@@ -1261,14 +1318,6 @@ function closeDetailsModal() {
     document.body.style.overflow = 'auto';
 }
 
-function editTradeFromDetails() {
-    const modal = document.getElementById('detailsModal');
-    if (modal && modal._currentTradeId) {
-        closeDetailsModal();
-        editTrade(modal._currentTradeId);
-    }
-}
-
 function openCloseModal(tradeId) {
     currentTradeIdForClose = tradeId;
     document.getElementById('closePriceInput').value = '';
@@ -1314,6 +1363,7 @@ async function confirmCloseTrade() {
         updateStats();
         updateTotalRisk();
         updateMonthlyDashboard();
+        loadOpenTrades();
         
         closeCloseModal();
         
@@ -1445,8 +1495,8 @@ async function editTrade(id) {
     calculateRisk();
     showNotification('معامله برای ویرایش آماده است.', 'info');
     
-    // رفتن به بخش فرم ثبت معامله
     switchSection('trade-form');
+    loadOpenTrades();
 }
 
 async function deleteTrade(id) {
@@ -1456,6 +1506,7 @@ async function deleteTrade(id) {
         loadTrades();
         updateStats();
         updateTotalRisk();
+        loadOpenTrades();
         setInitialMonthBasedOnLastTrade();
         updateMonthlyDashboard();
         showNotification('معامله حذف شد.', 'warning');
@@ -1574,6 +1625,7 @@ async function deleteAccount(accountId) {
         updateBalanceDisplay();
         updateAccountsList();
         loadTrades();
+        loadOpenTrades();
         updateStats();
         updateTotalRisk();
         setInitialMonthBasedOnLastTrade();
@@ -1601,6 +1653,7 @@ async function switchAccount(accountId) {
     updateBalanceDisplay();
     updateAccountsList();
     loadTrades();
+    loadOpenTrades();
     updateStats();
     updateTotalRisk();
     setInitialMonthBasedOnLastTrade();
@@ -2069,6 +2122,7 @@ async function importData() {
         updateBalanceDisplay();
         updateAccountsList();
         loadTrades();
+        loadOpenTrades();
         updateStats();
         updateTotalRisk();
         setInitialMonthBasedOnLastTrade();
