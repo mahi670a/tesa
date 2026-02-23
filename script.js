@@ -567,25 +567,27 @@ function updateDetailedStats() {
     // موجودی اولیه
     document.getElementById('initialBalance').textContent = formatCurrency(initialAccountBalance);
     
-    // موجودی فعلی
-    document.getElementById('currentBalanceStats').textContent = formatCurrency(accountBalance);
+    // موجودی فعلی (محاسبه شده از سود و ضرر معاملات بسته شده)
+    const totalPnL = calculateTotalPnL();
+    const currentCalculatedBalance = initialAccountBalance + totalPnL;
+    document.getElementById('currentBalanceStats').textContent = formatCurrency(currentCalculatedBalance);
     
     // سود و ضرر کل
-    const totalPnL = calculateTotalPnL();
     const totalPnLElement = document.getElementById('totalPnLStats');
     totalPnLElement.textContent = (totalPnL >= 0 ? '+' : '') + formatCurrency(Math.abs(totalPnL));
     totalPnLElement.style.color = totalPnL >= 0 ? '#10b981' : '#ef4444';
     
-    // درصد سود
-    const profitPercentage = initialAccountBalance > 0 ? ((accountBalance - initialAccountBalance) / initialAccountBalance) * 100 : 0;
-    document.getElementById('profitPercentage').textContent = profitPercentage.toFixed(2) + '%';
-    document.getElementById('profitPercentage').style.color = profitPercentage >= 0 ? '#10b981' : '#ef4444';
+    // درصد سود/ضرر نسبت به بالانس اولیه
+    const profitPercentage = initialAccountBalance > 0 ? (totalPnL / initialAccountBalance) * 100 : 0;
+    const profitPercentageElement = document.getElementById('profitPercentage');
+    profitPercentageElement.textContent = (profitPercentage >= 0 ? '+' : '') + profitPercentage.toFixed(2) + '%';
+    profitPercentageElement.style.color = profitPercentage >= 0 ? '#10b981' : '#ef4444';
     
-    // سود خالص
+    // سود خالص (مجموع معاملات سودده)
     const totalProfit = calculateTotalProfit();
     document.getElementById('netProfit').textContent = formatCurrency(totalProfit);
     
-    // ضرر خالص
+    // ضرر خالص (مجموع معاملات ضررده)
     const totalLoss = calculateTotalLoss();
     document.getElementById('netLoss').textContent = formatCurrency(totalLoss);
     
