@@ -255,40 +255,45 @@
     
     <!-- ساختار اصلی با Toolbar -->
     <div class="app-wrapper">
-        <!-- Toolbar عمودی سمت راست (فقط آیکون) -->
+        <!-- Toolbar بالا -->
         <div class="toolbar">
             <div class="toolbar-header">
                 <div class="toolbar-logo">
                     <i class="fas fa-coins"></i>
                 </div>
+                <div class="toolbar-title">Crypto Journal</div>
             </div>
             
             <div class="toolbar-menu">
-                <button class="toolbar-btn active" data-section="trade-form" onclick="switchSection('trade-form')" data-title="فرم ثبت معاملات">
+                <button class="toolbar-btn active" onclick="switchSection('trade-form')">
                     <i class="fas fa-plus-circle"></i>
+                    <span>فرم ثبت معاملات</span>
                 </button>
                 
-                <button class="toolbar-btn" data-section="history" onclick="switchSection('history')" data-title="تاریخچه معاملات">
+                <button class="toolbar-btn" onclick="switchSection('history')">
                     <i class="fas fa-history"></i>
+                    <span>تاریخچه معاملات</span>
                 </button>
                 
-                <button class="toolbar-btn" data-section="dashboard" onclick="switchSection('dashboard')" data-title="داشبورد ماهانه">
+                <button class="toolbar-btn" onclick="switchSection('dashboard')">
                     <i class="fas fa-chart-pie"></i>
+                    <span>داشبورد ماهانه</span>
                 </button>
                 
-                <button class="toolbar-btn" data-section="stats" onclick="switchSection('stats')" data-title="آمار/ریسک">
+                <button class="toolbar-btn" onclick="switchSection('stats')">
                     <i class="fas fa-chart-bar"></i>
+                    <span>آمار/ریسک</span>
                 </button>
                 
-                <button class="toolbar-btn" data-section="backup" onclick="switchSection('backup')" data-title="بکاپ">
+                <button class="toolbar-btn" onclick="switchSection('backup')">
                     <i class="fas fa-database"></i>
+                    <span>بکاپ</span>
                 </button>
             </div>
             
-            <div class="toolbar-footer">
-                <div class="toolbar-user">
-                    <i class="fas fa-user-circle"></i>
-                </div>
+            <div class="toolbar-user">
+                <i class="fas fa-user-circle"></i>
+                <span>R-NIKER</span>
             </div>
         </div>
         
@@ -316,7 +321,7 @@
                     </div>
                 </header>
                 
-                <!-- بخش بالانس حساب (همیشه نمایش داده می‌شود) -->
+                <!-- بخش بالانس حساب -->
                 <div class="balance-container">
                     <div class="balance-main">
                         <div class="balance-icon">
@@ -441,8 +446,8 @@
                 </div>
                 
                 <main class="main-content">
-                    <!-- بخش ثبت معامله (پیش‌فرض فعال) -->
-                    <section id="trade-form-section" class="section active-section">
+                    <!-- بخش ثبت معامله -->
+                    <section id="trade-form-section" class="section">
                         <h2 class="section-title"><i class="fas fa-plus-circle"></i> ثبت معامله جدید</h2>
                         <form id="tradeForm" class="trade-form">
                             <div class="form-grid">
@@ -591,7 +596,7 @@
                         </form>
                     </section>
                     
-                    <!-- بخش تاریخچه معاملات (مخفی در ابتدا) -->
+                    <!-- بخش تاریخچه معاملات -->
                     <section id="history-section" class="section">
                         <h2 class="section-title"><i class="fas fa-history"></i> تاریخچه معاملات</h2>
                         <div class="trades-table-container">
@@ -620,7 +625,7 @@
                         </p>
                     </section>
                     
-                    <!-- بخش داشبورد ماهانه (مخفی در ابتدا) -->
+                    <!-- بخش داشبورد ماهانه -->
                     <section id="dashboard-section" class="dashboard-section">
                         <div class="dashboard-header">
                             <h2 class="dashboard-title">
@@ -681,7 +686,7 @@
                         </div>
                     </section>
                     
-                    <!-- بخش آمار و تحلیل کلی (مخفی در ابتدا) -->
+                    <!-- بخش آمار و تحلیل کلی -->
                     <section id="stats-section" class="section">
                         <h2 class="section-title"><i class="fas fa-chart-bar"></i> آمار عملکرد کلی</h2>
                         <div class="stats-container">
@@ -728,7 +733,7 @@
                         </div>
                     </section>
                     
-                    <!-- بخش پشتیبان‌گیری (مخفی در ابتدا) -->
+                    <!-- بخش پشتیبان‌گیری -->
                     <section id="backup-section" class="section">
                         <h2 class="section-title"><i class="fas fa-database"></i> پشتیبان‌گیری</h2>
                         <div class="backup-container">
