@@ -1,16 +1,11 @@
-<svg width="380" height="260" viewBox="0 0 380 260" xmlns="http://www.w3.org/2000/svg">
+<svg width="400" height="280" viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
 
 <style>
-  .glow-green { filter: drop-shadow(0 0 8px #00FFA3); }
-  .glow-red { filter: drop-shadow(0 0 8px #FF003C); }
+.glow-green { filter: drop-shadow(0 0 10px #00FFA3); }
+.glow-red { filter: drop-shadow(0 0 10px #FF003C); }
 </style>
 
 <defs>
-  <radialGradient id="bg" cx="50%" cy="45%" r="75%">
-    <stop offset="0%" stop-color="#0F172A"/>
-    <stop offset="100%" stop-color="#020409"/>
-  </radialGradient>
-
   <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="200">
     <stop offset="0%" stop-color="#7CFF4F"/>
     <stop offset="100%" stop-color="#00FFA3"/>
@@ -21,74 +16,61 @@
     <stop offset="100%" stop-color="#FF003C"/>
   </linearGradient>
 
-  <filter id="shadow">
-    <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
-  </filter>
+  <radialGradient id="bg" cx="50%" cy="50%" r="80%">
+    <stop offset="0%" stop-color="#0F172A"/>
+    <stop offset="100%" stop-color="#020409"/>
+  </radialGradient>
 </defs>
 
 <!-- Background -->
-<rect width="380" height="260" rx="32" fill="url(#bg)"/>
+<rect width="400" height="280" rx="30" fill="url(#bg)" />
 
-<!-- Spine -->
-<rect x="95" y="45" width="14" height="170" rx="7"
-      fill="url(#redGrad)" class="glow-red"/>
-
-<!-- Notebook -->
-<rect x="105" y="45" width="200" height="170" rx="22"
+<!-- Open Notebook Effect -->
+<rect x="90" y="50" width="220" height="160" rx="20"
       fill="#111827"
       stroke="url(#greenGrad)"
       stroke-width="3"
-      filter="url(#shadow)"
       class="glow-green"/>
 
-<!-- Paper -->
-<rect x="120" y="60" width="170" height="140" rx="14"
-      fill="#0F172A"/>
+<!-- Fold shadow -->
+<line x1="200" y1="50" x2="200" y2="210"
+      stroke="#1E293B"
+      stroke-width="2"/>
 
-<!-- Writing Path -->
-<path id="writePath"
-      d="M140 120 Q165 95 190 120 T240 120"
+<!-- Writing Signature Path (JM style curve) -->
+<path id="sigPath"
+      d="M130 160 
+         Q150 120 170 160 
+         T210 160 
+         M220 160 
+         Q240 120 260 160 
+         T300 160"
       stroke="url(#greenGrad)"
-      stroke-width="3"
+      stroke-width="4"
       fill="none"
       stroke-linecap="round"
-      stroke-dasharray="240"
-      stroke-dashoffset="240"
+      stroke-dasharray="500"
+      stroke-dashoffset="500"
       class="glow-green">
   <animate attributeName="stroke-dashoffset"
-           from="240"
+           from="500"
            to="0"
            dur="3s"
+           begin="1s"
            repeatCount="indefinite"/>
 </path>
 
-<!-- Pen Group (Tip forward) -->
-<g>
-  <g transform="rotate(-25)">
-    <!-- Body -->
-    <rect x="-60" y="-4" width="60" height="8" rx="4"
-          fill="url(#redGrad)" class="glow-red">
-      <animateMotion dur="3s" repeatCount="indefinite">
-        <mpath href="#writePath"/>
-      </animateMotion>
-    </rect>
-
-    <!-- Metal ring -->
-    <rect x="-8" y="-4" width="6" height="8"
-          fill="#DDD">
-      <animateMotion dur="3s" repeatCount="indefinite">
-        <mpath href="#writePath"/>
-      </animateMotion>
-    </rect>
-
-    <!-- Tip -->
-    <polygon points="0,-5 12,0 0,5"
-             fill="#FFFFFF">
-      <animateMotion dur="3s" repeatCount="indefinite">
-        <mpath href="#writePath"/>
-      </animateMotion>
-    </polygon>
-  </g>
+<!-- Pen coming down -->
+<g class="glow-red">
+  <polygon points="0,-10 70,0 0,10"
+           fill="url(#redGrad)">
+    <animateTransform attributeName="transform"
+                      type="translate"
+                      from="260 30"
+                      to="260 155"
+                      dur="1s"
+                      repeatCount="indefinite"/>
+  </polygon>
 </g>
 
 </svg>
