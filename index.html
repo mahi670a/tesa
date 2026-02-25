@@ -256,123 +256,119 @@
     <!-- ساختار اصلی با Toolbar -->
     <div class="app-wrapper">
         <!-- Toolbar بالا -->
-        <div class="toolbar">
-            <div class="toolbar-header">
-                <!-- لوگوی SVG اصلی شما - بدون هیچ تغییری -->
-                <div class="custom-logo">
-                    <svg width="180" height="50" viewBox="0 0 760 300" fill="none"
-     xmlns="http://www.w3.org/2000/svg"
-     preserveAspectRatio="xMinYMid meet">
+        <div class="toolbar" style="padding: 0 40px;">
+            <div class="toolbar-header" style="min-width: 220px;">
+                <!-- لوگوی SVG جدید با سایز 180x50 -->
+                <div class="custom-logo" style="margin-left: 15px;">
+                    <svg width="180" height="50" viewBox="0 0 760 300" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMid meet">
+                        <defs>
+                            <radialGradient id="bg" cx="50%" cy="50%" r="80%">
+                                <stop offset="0%" stop-color="#0F172A"/>
+                                <stop offset="100%" stop-color="#02040A"/>
+                            </radialGradient>
 
-    <defs>
-        <radialGradient id="bg" cx="50%" cy="50%" r="80%">
-            <stop offset="0%" stop-color="#0F172A"/>
-            <stop offset="100%" stop-color="#02040A"/>
-        </radialGradient>
+                            <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="200">
+                                <stop offset="0%" stop-color="#66FF33">
+                                    <animate attributeName="stop-color"
+                                        values="#66FF33;#00FF99;#66FF33"
+                                        dur="4s" repeatCount="indefinite"/>
+                                </stop>
+                                <stop offset="100%" stop-color="#00FF99"/>
+                            </linearGradient>
 
-        <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="200">
-            <stop offset="0%" stop-color="#66FF33">
-                <animate attributeName="stop-color"
-                    values="#66FF33;#00FF99;#66FF33"
-                    dur="4s" repeatCount="indefinite"/>
-            </stop>
-            <stop offset="100%" stop-color="#00FF99"/>
-        </linearGradient>
+                            <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="200">
+                                <stop offset="0%" stop-color="#FF4D4D">
+                                    <animate attributeName="stop-color"
+                                        values="#FF4D4D;#FF0033;#FF4D4D"
+                                        dur="4s" repeatCount="indefinite"/>
+                                </stop>
+                                <stop offset="100%" stop-color="#FF0033"/>
+                            </linearGradient>
 
-        <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="200">
-            <stop offset="0%" stop-color="#FF4D4D">
-                <animate attributeName="stop-color"
-                    values="#FF4D4D;#FF0033;#FF4D4D"
-                    dur="4s" repeatCount="indefinite"/>
-            </stop>
-            <stop offset="100%" stop-color="#FF0033"/>
-        </linearGradient>
+                            <filter id="glow" x="-200%" y="-200%" width="400%" height="400%">
+                                <feGaussianBlur stdDeviation="10" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
 
-        <filter id="glow" x="-200%" y="-200%" width="400%" height="400%">
-            <feGaussianBlur stdDeviation="10" result="blur"/>
-            <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-        </filter>
-    </defs>
+                        <rect width="760" height="300" rx="40" fill="url(#bg)"/>
 
-    <rect width="760" height="300" rx="40" fill="url(#bg)"/>
+                        <path d="M90 190 
+                                 L150 130 
+                                 L200 160 
+                                 L260 100 
+                                 L320 150 
+                                 L380 110"
+                            stroke="url(#greenGrad)"
+                            stroke-width="5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            filter="url(#glow)"
+                            stroke-dasharray="500"
+                            stroke-dashoffset="500">
+                            <animate attributeName="stroke-dashoffset"
+                                from="500" to="0"
+                                dur="3s"
+                                repeatCount="indefinite"/>
+                        </path>
 
-    <path d="M90 190 
-             L150 130 
-             L200 160 
-             L260 100 
-             L320 150 
-             L380 110"
-        stroke="url(#greenGrad)"
-        stroke-width="5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        filter="url(#glow)"
-        stroke-dasharray="500"
-        stroke-dashoffset="500">
-        <animate attributeName="stroke-dashoffset"
-            from="500" to="0"
-            dur="3s"
-            repeatCount="indefinite"/>
-    </path>
+                        <!-- J -->
+                        <path d="M130 90 
+                                 V200 
+                                 Q130 230 170 230 
+                                 Q210 230 210 180"
+                            stroke="url(#greenGrad)"
+                            stroke-width="16"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            filter="url(#glow)">
+                            <animate attributeName="stroke-width"
+                                values="16;18;16"
+                                dur="2s"
+                                repeatCount="indefinite"/>
+                        </path>
 
-    <!-- J -->
-    <path d="M130 90 
-             V200 
-             Q130 230 170 230 
-             Q210 230 210 180"
-        stroke="url(#greenGrad)"
-        stroke-width="16"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        filter="url(#glow)">
-        <animate attributeName="stroke-width"
-            values="16;18;16"
-            dur="2s"
-            repeatCount="indefinite"/>
-    </path>
+                        <!-- M -->
+                        <path d="M420 220 
+                                 L460 95 
+                                 L500 180 
+                                 L540 75 
+                                 L580 220"
+                            stroke="url(#redGrad)"
+                            stroke-width="16"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            filter="url(#glow)">
+                            <animate attributeName="stroke-width"
+                                values="16;18;16"
+                                dur="2s"
+                                repeatCount="indefinite"/>
+                        </path>
 
-    <!-- M -->
-    <path d="M420 220 
-             L460 95 
-             L500 180 
-             L540 75 
-             L580 220"
-        stroke="url(#redGrad)"
-        stroke-width="16"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        filter="url(#glow)">
-        <animate attributeName="stroke-width"
-            values="16;18;16"
-            dur="2s"
-            repeatCount="indefinite"/>
-    </path>
+                        <!-- Brand Text -->
+                        <text x="170" y="270"
+                            text-anchor="middle"
+                            font-family="Helvetica, Arial, sans-serif"
+                            font-size="40"
+                            letter-spacing="12"
+                            fill="url(#greenGrad)"
+                            filter="url(#glow)">
+                            JOURNAL
+                        </text>
 
-    <!-- Brand Text -->
-    <text x="170" y="270"
-        text-anchor="middle"
-        font-family="Helvetica, Arial, sans-serif"
-        font-size="40"
-        letter-spacing="12"
-        fill="url(#greenGrad)"
-        filter="url(#glow)">
-        JOURNAL
-    </text>
-
-    <text x="520" y="270"
-        text-anchor="middle"
-        font-family="Helvetica, Arial, sans-serif"
-        font-size="40"
-        letter-spacing="12"
-        fill="url(#redGrad)"
-        filter="url(#glow)">
-        ME
-    </text>
-
-</svg>
+                        <text x="520" y="270"
+                            text-anchor="middle"
+                            font-family="Helvetica, Arial, sans-serif"
+                            font-size="40"
+                            letter-spacing="12"
+                            fill="url(#redGrad)"
+                            filter="url(#glow)">
+                            ME
+                        </text>
+                    </svg>
                 </div>
             </div>
             
@@ -794,3 +790,153 @@
                             </table>
                         </div>
                     </section>
+                    
+                    <!-- بخش آمار و تحلیل کلی (مخفی در ابتدا) -->
+                    <section id="stats-section" class="section">
+                        <h2 class="section-title"><i class="fas fa-chart-bar"></i> آمار عملکرد کلی</h2>
+                        
+                        <!-- کارت‌های آماری -->
+                        <div class="stats-container">
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-exchange-alt"></i></div>
+                                <div class="stat-label">تعداد معاملات</div>
+                                <div class="stat-value neutral-stat" id="totalTrades">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-arrow-up"></i></div>
+                                <div class="stat-label">سود کل</div>
+                                <div class="stat-value positive" id="totalProfit">$0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-arrow-down"></i></div>
+                                <div class="stat-label">ضرر کل</div>
+                                <div class="stat-value negative" id="totalLoss">$0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-percentage"></i></div>
+                                <div class="stat-label">نرخ موفقیت</div>
+                                <div class="stat-value neutral-stat" id="winRate">0%</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-receipt"></i></div>
+                                <div class="stat-label">کارمزد کل</div>
+                                <div class="stat-value fee-stat" id="totalFees">$0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                                <div class="stat-label">بیشترین سود</div>
+                                <div class="stat-value positive" id="maxProfit">$0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="stat-label">بیشترین ضرر</div>
+                                <div class="stat-value negative" id="maxLoss">$0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                                <div class="stat-label">معاملات باز</div>
+                                <div class="stat-value neutral-stat" id="openTrades">0</div>
+                            </div>
+                        </div>
+                        
+                        <!-- جدول آمار تفصیلی -->
+                        <div class="detailed-stats-table">
+                            <h3 class="detailed-stats-title"><i class="fas fa-chart-simple"></i> آمار تفصیلی</h3>
+                            <div class="stats-grid">
+                                <div class="stats-row">
+                                    <div class="stats-item">
+                                        <span class="stats-label">موجودی اولیه:</span>
+                                        <span class="stats-value" id="initialBalance">$0</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">موجودی فعلی:</span>
+                                        <span class="stats-value" id="currentBalanceStats">$0</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">سود و ضرر:</span>
+                                        <span class="stats-value" id="totalPnLStats">$0</span>
+                                    </div>
+                                </div>
+                                <div class="stats-row">
+                                    <div class="stats-item">
+                                        <span class="stats-label">درصد سود:</span>
+                                        <span class="stats-value percentage-box" id="profitPercentage">0%</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">سود خالص:</span>
+                                        <span class="stats-value positive-box" id="netProfit">$0</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">ضرر خالص:</span>
+                                        <span class="stats-value negative-box" id="netLoss">$0</span>
+                                    </div>
+                                </div>
+                                <div class="stats-row">
+                                    <div class="stats-item">
+                                        <span class="stats-label">تعداد کل معاملات:</span>
+                                        <span class="stats-value" id="totalTradesStats">0</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">تعداد معاملات لانگ:</span>
+                                        <span class="stats-value" id="longTradesCount">0</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">تعداد معاملات شورت:</span>
+                                        <span class="stats-value" id="shortTradesCount">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- نمودار رشد حساب -->
+                        <div class="growth-chart-container">
+                            <h3 class="growth-chart-title"><i class="fas fa-chart-line"></i> رشد حساب کلی</h3>
+                            <canvas id="accountGrowthChart"></canvas>
+                            <div class="chart-axis-labels">
+                                <span class="axis-label x-axis">تعداد معاملات</span>
+                                <span class="axis-label y-axis">رشد سرمایه ($)</span>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- بخش پشتیبان‌گیری (مخفی در ابتدا) -->
+                    <section id="backup-section" class="section">
+                        <h2 class="section-title"><i class="fas fa-cloud-upload-alt"></i> پشتیبان‌گیری</h2>
+                        <div class="backup-container">
+                            <div class="backup-card">
+                                <div class="backup-header">
+                                    <i class="fas fa-download"></i>
+                                    <h3>دریافت پشتیبان</h3>
+                                </div>
+                                <p class="backup-description">
+                                    از تمام اطلاعات و تصاویر خود یک فایل ZIP پشتیبان بگیرید.
+                                </p>
+                                <button class="btn-backup" onclick="exportData()">
+                                    <i class="fas fa-file-export"></i> دانلود پشتیبان (ZIP)
+                                </button>
+                            </div>
+                            
+                            <div class="backup-card">
+                                <div class="backup-header">
+                                    <i class="fas fa-upload"></i>
+                                    <h3>بارگذاری پشتیبان</h3>
+                                </div>
+                                <p class="backup-description">
+                                    اطلاعات قبلی خود را از فایل ZIP بازیابی کنید.
+                                </p>
+                                <input type="file" id="backupFile" class="file-input" accept=".zip">
+                                <button class="btn-backup" onclick="importData()">
+                                    <i class="fas fa-file-import"></i> بارگذاری پشتیبان (ZIP)
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- اسکریپت جدا -->
+    <script src="script.js"></script>
+</body>
+</html>
